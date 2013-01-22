@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>hover</title>
+    <link rel="stylesheet" href="../build/build.css">
+    <style>
+      div {
+        display: inline-block;
+        border: 1px solid #aaa;
+        padding: 20px;
+      }
+      .red { background: red; }
+      .yellow { background: yellow; }
+    </style>
+  </head>
+  <body>
+    <div id="hoverme">Hover Me</div>
+    <div id="onlyonce">This</div>
+    <div id="outside">Outside
+      <div id="inside">Inside</div>
+    </div>
+    <script src="../build/build.js"></script>
+    <script>
+      var hover = require('hover')
+      var get = document.getElementById.bind(document)
+      
+      hover(get('hoverme'), function (ev) {
+        ev.target.textContent = 'Hello there!'
+      }, function (ev) {
+        ev.target.textContent = 'Come back :('
+      })
+
+      hover.once(get('onlyonce'), function (ev) {
+        ev.target.textContent = 'will happen'
+      }, function (ev) {
+        ev.target.textContent = 'only once...'
+      })
+
+      hover(get('outside'), function (ev) {
+        ev.target.classList.add('red')
+      }, function (ev) {
+        ev.target.classList.remove('red')
+      })
+
+      hover(get('inside'), function (ev) {
+        ev.target.classList.add('yellow')
+      })
+    </script>
+  </body>
+</html>
