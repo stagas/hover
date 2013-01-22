@@ -1,12 +1,13 @@
 {
   "name": "hover",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "hover elements",
   "keywords": ["hover"],
   "author": "stagas",
   "licence": "MIT",
   "dependencies": {
-    "component/event": "*"
+    "stagas/mouseenter": "*",
+    "stagas/mouseleave": "*"
   },    
   "scripts": ["index.js"]
 }

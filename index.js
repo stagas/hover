@@ -9,7 +9,8 @@
  * Module dependencies.
  */
 
-var events = require('event')
+var mouseenter = require('mouseenter')
+var mouseleave = require('mouseleave')
 
 /**
  * Export hover.
@@ -29,8 +30,8 @@ module.exports = hover
  */
 
 function hover (el, onmouseenter, onmouseleave) {
-  events.bind(el, 'mouseenter', onmouseenter)
-  events.bind(el, 'mouseleave', onmouseleave)
+  mouseenter(el, onmouseenter)
+  mouseleave(el, onmouseleave)
   return el
 }
 
@@ -45,10 +46,10 @@ function hover (el, onmouseenter, onmouseleave) {
  */
 
 hover.once = function (el, onmouseenter, onmouseleave) {
-  events.bind(el, 'mouseenter', onmouseenter)
-  events.bind(el, 'mouseleave', function wrapper (ev) {
-    events.unbind(el, 'mouseenter', onmouseenter)
-    events.unbind(el, 'mouseleave', wrapper)
+  mouseenter(el, onmouseenter)
+  mouseleave(el, function wrapper (ev) {
+    mouseenter.unbind(el, onmouseenter)
+    mouseleave.unbind(el, wrapper)
 
     onmouseleave.apply(this, arguments)
   })
