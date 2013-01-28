@@ -1,10 +1,10 @@
 {
   "name": "hover",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "hover elements",
   "keywords": ["hover"],
   "author": "stagas",
-  "licence": "MIT",
+  "license": "MIT",
   "dependencies": {
     "stagas/mouseenter": "*",
     "stagas/mouseleave": "*"
