@@ -25,13 +25,27 @@ module.exports = hover
  * @param {element} el
  * @param {fn} onmouseenter
  * @param {fn} onmouseleave
+ * @param {number} leavedelay
  *
  * @return {element} el
  */
 
-function hover (el, onmouseenter, onmouseleave) {
-  mouseenter(el, onmouseenter)
-  mouseleave(el, onmouseleave)
+function hover (el, onmouseenter, onmouseleave, leavedelay) {
+  if (leavedelay) {
+    var t
+    mouseenter(el, function (ev) {
+      clearTimeout(t)
+      onmouseenter(ev)
+    })
+    mouseleave(el, function (ev) {
+      clearTimeout(t)
+      t = setTimeout(onmouseleave, leavedelay, ev)
+    })
+  }
+  else {
+    mouseenter(el, onmouseenter)
+    mouseleave(el, onmouseleave)
+  }
   return el
 }
 
