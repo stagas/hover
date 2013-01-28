@@ -11,12 +11,14 @@
       }
       .red { background: red; }
       .yellow { background: yellow; }
+      .green { background: green; }
+      .blue { background: blue; }
     </style>
   </head>
   <body>
     <div id="hoverme">Hover Me</div>
     <div id="onlyonce">This</div>
-    <div id="outside">Outside
+    <div id="outside">Outside with delay
       <div id="inside">Inside</div>
     </div>
     <script src="../build/build.js"></script>
@@ -40,10 +42,10 @@
         ev.target.classList.add('red')
       }, function (ev) {
         ev.target.classList.remove('red')
-      })
+      }, 300)
 
       hover(get('inside'), function (ev) {
-        ev.target.classList.add('yellow')
+        ev.target.className = ['yellow','green','blue','red'][Math.random() * 4 | 0]
       })
     </script>
   </body>
